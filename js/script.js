@@ -1,8 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   document.getElementById("main-content").style.display = "block";
-// });
-
-// ===== POPUP CONTROL =====
 function toggleSection(sectionId) {
   closePopup();
   document.getElementById('popup-overlay').classList.add('active');
@@ -17,32 +12,6 @@ function closePopup() {
   document.body.classList.remove('no-scroll');
 }
 
-let currentSlide = 0;
-const slides = document.querySelectorAll(".carousel img");
-const dots = document.querySelectorAll(".dot");
-
-function setSlide(index) {
-  currentSlide = index;
-  updateCarousel();
-}
-
-function updateCarousel() {
-  const slideWidth = document.querySelector(".carousel-wrapper").offsetWidth;
-  const carousel = document.querySelector(".carousel");
-  carousel.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-
-  dots.forEach(dot => dot.classList.remove("active"));
-  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
-}
-
-function autoSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  updateCarousel();
-}
-
-window.addEventListener("resize", updateCarousel); // Recalculate on resize
-setInterval(autoSlide, 4000);
-
 let confirmCallback = null;
 
 function showCustomConfirm(message, callback) {
@@ -56,11 +25,9 @@ function handleConfirm(choice) {
   if (confirmCallback) confirmCallback(choice);
 }
 
-
-// ===== RSVP STEP CONTROL =====
 function setAttendance(status) {
   const confirmMsg = "Anda memilih: " + status + ", Teruskan?";
-  
+
   showCustomConfirm(confirmMsg, function(confirmed) {
     if (confirmed) {
       document.getElementById("hadir-status").value = status;
@@ -89,7 +56,7 @@ function setAttendance(status) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("rsvp-form").addEventListener("submit", function (e) {
+  document.getElementById("rsvp-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const form = e.target;
@@ -107,56 +74,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ===== CAROUSEL SWIPE SUPPORT =====
-let startX = 0;
-let endX = 0;
-const carouselElement = document.querySelector(".carousel-wrapper");
+function fetchAndRenderUcapan() {
+  fetch("https://script.google.com/macros/s/AKfycbzGQ-_JLi8w3BISCKfOPNPUrq4hOUu7D0o_hrrtIvajyJMakw3B0PmGUbHynRvfaKPvzA/exec")
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      const list = document.getElementById("ucapan-list");
+      const totalGuestsAttending = document.getElementById("guest-count");
+      const totalGuestsNotAttending = document.getElementById("guest-count-no");
 
-carouselElement.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
+      const addEntry = ({ message, name }) => {
+        if (!message || !message.trim()) return;
+        const p = document.createElement("p");
+        p.innerHTML = `<i>"${message}"</i><br><strong>${name}</strong>`;
+        list.appendChild(p);
+      };
+      [...data].reverse().forEach(addEntry);
+      list.style.animationDuration = `${list.scrollHeight / 30}s`;
 
-carouselElement.addEventListener("touchend", (e) => {
-  endX = e.changedTouches[0].clientX;
-  handleSwipe();
-});
+      const totalGuest = data.reduce((s, r) => s + (+r.bilangan || 0), 0);
+      const noGuest = data.filter(r => r.hadir === "Tidak Hadir").length;
 
-function handleSwipe() {
-  if (startX - endX > 50) {
-    currentSlide = (currentSlide + 1) % slides.length;
-    updateCarousel();
-  } else if (endX - startX > 50) {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    updateCarousel();
-  }
+      totalGuestsAttending.textContent = totalGuest;
+      totalGuestsNotAttending.textContent = noGuest;
+    })
+    .catch(err => {
+      console.error("Failed to fetch ucapan:", err);
+      const list = document.getElementById("ucapan-list");
+      list.innerHTML = "<p style=\"color: red;\">Failed to load messages. Please try again later.</p>";
+    });
 }
 
-// ===== UCAPAN FETCH =====
-fetch("https://script.google.com/macros/s/AKfycbzGQ-_JLi8w3BISCKfOPNPUrq4hOUu7D0o_hrrtIvajyJMakw3B0PmGUbHynRvfaKPvzA/exec")
-  .then(res => res.json())
-  .then(data => {
-    const list   = document.getElementById("ucapan-list");
-    const count  = document.getElementById("guest-count");
-    const count1 = document.getElementById("guest-count-no");
+fetchAndRenderUcapan();
 
-    const addEntry = ({ message, name }) => {
-      if (!message || !message.trim()) return;
-      const p = document.createElement("p");
-      p.innerHTML = `<i>"${message}"</i><br><strong>${name}</strong>`;
-      list.appendChild(p);
-    };
-    [...data].reverse().forEach(addEntry);    
-    list.style.animationDuration = `${list.scrollHeight / 30}s`;
-
-    const totalGuest = data.reduce((s, r) => s + (+r.bilangan || 0), 0);
-    const noGuest    = data.filter(r => r.hadir === "Tidak Hadir").length;
-
-    count.textContent  = totalGuest; 
-    count1.textContent = noGuest;
-  })
-  .catch(err => console.error("Failed to fetch ucapan:", err));
-
-// ===== COUNTDOWN =====
 const weddingDate = new Date("2025-10-04T09:00:00").getTime();
 
 function updateCountdown() {
@@ -184,7 +138,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bg-music");
   const btn = document.getElementById("music-btn");
@@ -193,13 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const enterBtn = document.getElementById("enter-btn");
   const mainContent = document.getElementById("main-content");
 
-  // Show intro screen first
   introScreen.style.display = "flex";
   mainContent.style.display = "none";
   btn.style.display = "none";
 
   enterBtn.addEventListener("click", () => {
-    introScreen.classList.add("fade-out"); // Optional animation class
+    introScreen.classList.add("fade-out");
     enterBtn.classList.add("animate-exit");
     document.body.classList.add("no-scroll");
 
@@ -209,16 +161,14 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.style.display = "block";
       document.body.classList.remove("no-scroll");
 
-      // Try to play music
       music.play().then(() => {
-        icon.src = "assets/icons/music-sign.png";
+        icon.src = "assets/icons/music-sign.webp";
         icon.alt = "Music On";
       }).catch(() => {
-        icon.src = "assets/icons/mute.png";
+        icon.src = "assets/icons/mute.webp";
         icon.alt = "Music Off";
       });
 
-      // Start auto-scroll
       let autoScroll = true;
       let lastScrollY = 0;
 
@@ -246,32 +196,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lastScrollY = Math.max(0, currentY);
       });
-    }, 150); // delay after click
+    }, 150);
   });
 
-  // Manual toggle
   btn.addEventListener("click", () => {
     if (music.paused) {
       music.play();
-      icon.src = "assets/icons/music-sign.png";
+      icon.src = "assets/icons/music-sign.webp";
       icon.alt = "Music On";
     } else {
       music.pause();
-      icon.src = "assets/icons/mute.png";
+      icon.src = "assets/icons/mute.webp";
       icon.alt = "Music Off";
     }
   });
 });
 
-
 btn.addEventListener("click", () => {
   if (music.paused) {
     music.play();
-    icon.src = "assets/icons/music-sign.png";
+    icon.src = "assets/icons/music-sign.webp";
     icon.alt = "Music On";
   } else {
     music.pause();
-    icon.src = "assets/icons/mute.png";
+    icon.src = "assets/icons/mute.webp";
     icon.alt = "Music Off";
   }
 });
@@ -279,7 +227,7 @@ btn.addEventListener("click", () => {
 const textarea = document.getElementById('speech');
 const wordCountDisplay = document.getElementById('wordCount');
 
-textarea.addEventListener('input', function () {
+textarea.addEventListener('input', function() {
   let words = this.value.trim().split(/\s+/).filter(Boolean);
   if (words.length > 20) {
     words = words.slice(0, 20);
@@ -287,7 +235,6 @@ textarea.addEventListener('input', function () {
   }
   wordCountDisplay.textContent = `Ucapan: (${words.length} / 20 perkataan)`;
 });
-
 
 function openImagePopup(src) {
   document.getElementById("popup-img").src = src;
@@ -306,4 +253,3 @@ function handleRSVPClick() {
     btn.style.animation = 'none';
   });
 }
-

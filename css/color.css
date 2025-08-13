@@ -1,0 +1,83 @@
+:root {
+  --color-primary: #80282d;
+  --color-secondary: rgb(255, 246, 228);
+  --color-button: #5c1618;
+  --color-border: #c48930;
+  --color-element-bg: #f5f0e6;
+  --color-text: #000000;
+  --color-button-text: #ffffff;
+  --color-button-bg: #ffffff;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+.labell,
+.countdown-label,
+#guest-count,
+#guest-count-no,
+.guest-count-label,
+.time,
+.event,
+.timeline-text,
+.contact-link,
+.ucapan-scroll p,
+.popup-section form,
+form input,
+form select,
+form textarea {
+  color: var(--color-primary) !important;
+}
+
+*,
+*:before,
+*:after {
+  border-color: var(--color-border) !important;
+}
+
+body,
+section,
+.popup-section,
+.contact-box,
+.countdown-box,
+.kehadiran,
+.animated-border,
+.carousel-wrapper,
+.ucapan-scroll,
+.timeline-row,
+.timeline li,
+.confirm-popup,
+input,
+textarea,
+select,
+button,
+.map-btn,
+#enter-btn,
+.popup-buttons button,
+#navigation {
+  background-color: var(--color-secondary) !important;
+}
+
+button,
+.map-btn,
+.kehadiran,
+.popup-buttons button {
+  background-color: var(--color-button) !important;
+  color: var(--color-button-text) !important;
+}
+
+.tarikh-btn {
+  background-color: var(--color-button-text) !important;
+  color: var(--color-button) !important;
+}
+
+.nav-icon,
+.wa-icon {
+  filter: invert(17%) sepia(81%) saturate(6401%) hue-rotate(-11deg) brightness(50%) contrast(85%);
+}
+
+#music-icon {
+  filter: brightness(0) invert(1);
+}

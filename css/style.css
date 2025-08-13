@@ -1,10 +1,4 @@
 html {
-  /* background-repeat: no-repeat;
-  background-size: 100% 100%; 
-  background-position: top;
-  background-attachment: scroll;
-   background-color: rgba(255, 243, 222, 0.8);
-  background-blend-morgba(255, 255, 255, 0.8); */
   overflow-x: hidden;
 }
 
@@ -14,10 +8,13 @@ body {
   padding-bottom: 60px;
   text-align: center;
   overflow-x: hidden;
+  background-color: var(--color-element-bg);
 }
 
-body, footer, .popup-section {
-max-width: 425px;
+body,
+footer,
+.popup-section {
+  max-width: 425px;
   margin-right: auto;
   margin-left: auto;
   border-right: 1px solid #ccc;
@@ -41,25 +38,72 @@ main {
 
 @font-face {
   font-family: 'PlayFair';
-  src: url('../assets/fonts/PlayFair.ttf') format('truetype');
+  src: url('../assets/fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src: url('../assets/fonts/Poppins.ttf') format('truetype');
+  src: url('../assets/fonts/Quicksand-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
+h1,
+h2,
+h3,
+p,
+.labell,
+.countdown-label,
+#guest-count,
+#guest-count-no,
+.guest-count-label,
+.time,
+.event {
+  color: var(--color-text);
+}
 
-h1 { font-family: 'PlayFair', sans-serif; font-size: 1.6em; margin: 5px 0; color: #000000; }
-h2 { font-family: 'PlayFair', sans-serif;font-size: 1.3em; margin: 3px 0; color: #000000;}
-h3 { font-size: 1em; margin: 8px 0; color: #000000; }
-p  { font-size: 0.9em; margin: 4px 0;color: #000000; }
+h1 {
+  font-family: 'PlayFair', sans-serif;
+  font-size: 1.6em;
+  margin: 5px 0;
+}
+h2 {
+  font-family: 'PlayFair', sans-serif;
+  font-size: 1.3em;
+  margin: 3px 0;
+}
+h3 {
+  font-family: 'Poppins';
+  font-size: 1em;
+  margin: 8px 0;
+}
+p {
+  font-size: 0.9em;
+  margin: 4px 0;
+}
+h1,
+h2,
+h3,
+p,
+.labell,
+.countdown-label,
+#guest-count,
+#guest-count-no,
+.guest-count-label,
+.time,
+.event {
+  color: var(--color-primary);
+}
 
-.h3-main { font-family: 'PlayFair', sans-serif; margin: 0px 0; font-size: 1.2rem; margin: 8px 0; color: #000000;}
+.h3-main {
+  font-family: 'PlayFair', sans-serif;
+  margin: 0px 0;
+  font-size: 1.2rem;
+  margin: 8px 0;
+  color: #000000;
+}
 
 img {
   max-width: 100%;
@@ -76,16 +120,17 @@ img {
 }
 
 .countdown-label {
-  color:#000;
+  color: #000;
 }
 
 .countdown-box {
   flex: 1 1 10%;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 6px;
+  background-color: var(--color-button-bg);
 }
 .countdown-box h2 {
-  color: #000;
+  color: var(--color-button-bg);
 }
 
 #guest-count {
@@ -131,7 +176,10 @@ img {
   margin-top: 4px;
 }
 
-input, textarea, button, select {
+input,
+textarea,
+button,
+select {
   padding: 10px;
   font-size: 1em;
   width: 100%;
@@ -140,8 +188,10 @@ input, textarea, button, select {
   font-family: 'Poppins', sans-serif;
 }
 
-input, textarea, select {
-  border-radius: 8px;
+input,
+textarea,
+select {
+  border-radius: 6px;
   border: 1px solid;
 }
 
@@ -149,9 +199,9 @@ button {
   background-color: white;
   color: black;
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: 6px;
   margin-top: 5px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 50%;
 }
 
@@ -168,18 +218,18 @@ button {
 }
 
 section {
-  padding:10vh 0;
+  padding: 10vh 0;
   margin: 0;
   border-top: 1px solid #e4ddd3;
   border-bottom: 1px solid #e4ddd3;
 }
 
 .short {
-  padding:0vh 0 10vh 0;
+  padding: 0vh 0 10vh 0;
 }
 
 .shorter {
-  padding:5vh 0;
+  padding: 5vh 0;
 }
 
 #wrapper {
@@ -217,16 +267,22 @@ section {
 }
 
 @keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .popup-overlay {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1000;
 }
 
@@ -243,13 +299,15 @@ section {
   gap: 10px;
 }
 
-form input, select, textarea {
+form input,
+form select,
+form textarea {
   margin-bottom: 10px;
 }
 
 .labell {
   font-size: 1em;
-  color: black
+  color: black;
 }
 
 .carousel-wrapper {
@@ -260,12 +318,13 @@ form input, select, textarea {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .carousel {
   display: flex;
-  transition: transform 0.8s ease-in-out;
+  transform: none !important;
+  overflow: visible;
 }
 
 .carousel img {
@@ -274,7 +333,6 @@ form input, select, textarea {
   object-fit: cover;
   flex-shrink: 0;
 }
-
 
 .dots {
   text-align: center;
@@ -318,13 +376,12 @@ form input, select, textarea {
 .time {
   font-weight: bold;
   margin-bottom: 4px;
-  color:  #000;
+  color: #000;
 }
 
 .event {
-  color:  #000;
+  color: #000;
 }
-
 
 .contact-container {
   display: flex;
@@ -337,8 +394,8 @@ form input, select, textarea {
 }
 
 .contact-link {
-  display: flex;              /* ensure child centers */
-  justify-content: center;    /* center the .contact-box */
+  display: flex;
+  justify-content: center;
   width: 100%;
   text-decoration: none;
   color: inherit;
@@ -353,13 +410,12 @@ form input, select, textarea {
   align-items: center;
   padding: 20px 16px;
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: 6px;
   background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.2s;
   text-align: left;
 }
-
 
 .wa-icon {
   width: 24px;
@@ -367,7 +423,7 @@ form input, select, textarea {
 }
 .map-buttons {
   display: flex;
-  flex-direction: column; /* stack buttons on mobile */
+  flex-direction: column;
   align-items: center;
   gap: 10px;
   margin-top: 10px;
@@ -377,7 +433,7 @@ form input, select, textarea {
   background-color: white;
   color: black;
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 20px 0px;
   font-size: 1em;
@@ -387,7 +443,6 @@ form input, select, textarea {
   font-family: 'Poppins', sans-serif;
   transition: background-color 0.2s;
 }
-
 
 .rsvp-btn {
   margin-top: 5%;
@@ -401,7 +456,6 @@ form input, select, textarea {
   flex-direction: column;
   align-items: stretch;
 }
-
 
 .timeline li {
   width: 80%;
@@ -433,7 +487,7 @@ form input, select, textarea {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   width: 60%;
-  margin:0 auto
+  margin: 0 auto;
 }
 
 #ucapan-list {
@@ -452,8 +506,12 @@ form input, select, textarea {
 }
 
 @keyframes scroll-up {
-  0% { transform: translateY(100%); }
-  100% { transform: translateY(-100%); }
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
 }
 
 #music-btn {
@@ -489,7 +547,7 @@ form input, select, textarea {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: rgb(255, 246, 228);
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -504,11 +562,11 @@ form input, select, textarea {
   flex-direction: column;
   align-items: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%; 
+  background-size: 100% 100%;
   background-position: top;
   background-attachment: scroll;
-   background-color: rgba(255, 255, 255, 0.8);
-  background-blend-mode: screen; 
+  background-color: rgb(255, 246, 228);
+  background-blend-mode: screen;
 }
 
 #enter-btn {
@@ -517,21 +575,22 @@ form input, select, textarea {
   font-size: 18px;
   background-color: transparent;
   color: black;
-  border-radius: 50%;
-  border: 1px solid #000000;
+  border: none;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 10;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: none;
+  padding: 0;
 }
 
 #enter-btn.animate-exit {
   transform: translateY(200px);
   opacity: 0;
   transition: transform 0.8s ease, opacity 0.8s ease;
-} 
+}
 
 .fade-out {
   animation: fadeOut 0.5s forwards;
@@ -544,7 +603,6 @@ form input, select, textarea {
   }
 }
 
-
 .kehadiran {
   width: 80%;
   max-width: 400px;
@@ -554,12 +612,13 @@ form input, select, textarea {
   display: block;
 }
 
-
 .popup-overlay1 {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.8);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
   display: none;
   justify-content: center;
   align-items: center;
@@ -569,18 +628,18 @@ form input, select, textarea {
 .popup-overlay1 img {
   max-width: 90vw;
   max-height: 90vh;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes pulse-highlight {
-  0%, 100% {
-     background-color: white;
-    color:  #000000;
+  0%,
+  100% {
+    background-color: white;
+    color: #000000;
     transform: scale(1);
-    
   }
-  50% { 
+  50% {
     background-color: black;
     color: white;
     border: 2px solid black;
@@ -594,7 +653,8 @@ form input, select, textarea {
 }
 
 @keyframes pulse-highlight {
-  0%, 100% {
+  0%,
+  100% {
     background-color: white;
     color: black;
     transform: scale(1);
@@ -602,13 +662,14 @@ form input, select, textarea {
   50% {
     background-color: #000000;
     color: white;
-    border: 2px solid  #000000;
+    border: 2px solid #000000;
     transform: scale(1.09);
   }
 }
 
 @keyframes border-pulse {
-  0%, 100% {
+  0%,
+  100% {
     border-width: 1px;
   }
   50% {
@@ -630,63 +691,73 @@ form input, select, textarea {
 .top-right-bg {
   position: absolute;
   top: 0;
-  right: -90px;
-  width: 60%; /* adjust size */
-  opacity: 0.8; /* optional for decoration */
+  right: -130px;
+  width: 60%;
+  opacity: 0.8;
   pointer-events: none;
   z-index: 0;
   transform: scaleX(-1);
+  transform: scaleY(-1);
 }
 
 .top-left-bg {
   position: absolute;
   top: 0;
-  left: -50px;
-  width: 60%; /* adjust size */
-  opacity: 0.8; /* optional for decoration */
+  left: -100px;
+  width: 60%;
+  opacity: 0.8;
   pointer-events: none;
   z-index: 0;
+  transform: scaleX(-1);
 }
 
 .bottom-right-bg {
   position: absolute;
   bottom: 0;
-  right: -40px;
-  width: 60%; /* adjust as needed */
+  right: -120px;
+  width: 60%;
   opacity: 0.8;
   pointer-events: none;
   z-index: 0;
 }
-
 
 .bottom-left-bg {
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 60%; /* adjust as needed */
+  left: -50px;
+  width: 60%;
   opacity: 0.8;
   pointer-events: none;
   z-index: 0;
   transform: scaleX(-1);
 }
-
 
 .custom-top-left-bg {
   position: absolute;
   top: 0;
-  left: -100px;
-  width: 60%; /* adjust as needed */
+  left: -90px;
+  width: 60%;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.custom-bottom-left-bg {
+  position: absolute;
+  bottom: 0.01;
+  left: -150px;
+  width: 60%;
   opacity: 0.8;
   pointer-events: none;
   z-index: 0;
   transform: scaleX(-1);
 }
 
-.custom-bottom-left-bg {
+.customm-bottom-left-bg {
   position: absolute;
   bottom: 0;
-  left: -100px;
-  width: 60%; /* adjust as needed */
+  left: -130px;
+  width: 60%;
   opacity: 0.8;
   pointer-events: none;
   z-index: 0;
@@ -699,7 +770,7 @@ form input, select, textarea {
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
   background: white;
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 20px;
   text-align: center;
   z-index: 5000;
@@ -727,8 +798,8 @@ form input, select, textarea {
 }
 
 #speech {
-    resize: none;
-    overflow: hidden;
-    width: 100%;
-    height: 100px;
-  }
+  resize: none;
+  overflow: hidden;
+  width: 100%;
+  height: 100px;
+}
