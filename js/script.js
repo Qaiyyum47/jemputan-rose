@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const scrollInterval = setInterval(() => {
         if (!autoScroll) return;
-        window.scrollBy(0, 1);
+        window.scrollBy(0, 2);
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
           clearInterval(scrollInterval);
         }
